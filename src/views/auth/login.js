@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function VulnerableComponent() {
-  const [userInput, setUserInput] = useState('');
-
-  const handleInputChange = (event) => {
-    setUserInput(event.target.value);
+function CsrfVulnerability() {
+  const handleCSRF = () => {
+    // Simulate a CSRF vulnerability by making an unauthorized action
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.example.com/change-email', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ email: 'attacker@example.com' }));
   };
 
   return (
     <div>
-      <h1>Vulnerable Component</h1>
-      <p>User Input: {userInput}</p> {/* Intentional XSS vulnerability */}
-      <input type="text" onChange={handleInputChange} />
+      <h1>CSRF Vulnerability</h1>
+      <button onClick={handleCSRF}>Change Email (Vulnerable)</button>
     </div>
   );
 }
 
-export default VulnerableComponent;
+export default CsrfVulnerability;
