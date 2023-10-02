@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import React from "react"
 
 function App() {
-    const apiKey = 'mySecretApiKey';
+    
     return (
         <AuthContextProvider>
             <Routers />
