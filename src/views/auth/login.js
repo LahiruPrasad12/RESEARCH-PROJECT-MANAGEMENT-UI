@@ -6,10 +6,18 @@ import { Field, Form, Formik } from "formik";
 import auth from "../../apis/modules/auth";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ErrorToast from "../../toast/error";
+import { GoogleLogin } from 'react-google-login';
+
 
 export default function Login() {
   //if user already logged in user redirect to
-  useEffect(() => {});
+  const responseGoogle = (response) => {
+    console.log(response);
+    // Send the Google response to your backend for verification
+    if (response && response.profileObj) {
+      onSuccess(response.profileObj); // This function should send the user data to your backend
+    }
+  };
 
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState("");
@@ -42,7 +50,7 @@ export default function Login() {
       } else if (respond.data.user.role === "staff") {
         window.location = "/student/staffwaiting";
       }
-      
+
     } catch (e) {
       localStorage.clear();
       setError("Your user name or password is incorrect");
@@ -95,7 +103,7 @@ export default function Login() {
                       </Link>
                     </div>
                     <p class="login-card-description">Sign into your account</p>
-                    <Link to = '/staff-register' class="btn btn-info" style={{marginBottom: '3%'}}>Staff Register</Link>
+                    <Link to='/staff-register' class="btn btn-info" style={{ marginBottom: '3%' }}>Staff Register</Link>
                     <Formik
                       initialValues={{
                         email: "",
@@ -154,6 +162,16 @@ export default function Login() {
                       </a>
                     </p>
                   </div>
+
+                </div>
+                <div>
+                  <GoogleLogin
+                    clientId="449561251103-856haadov9gmdvn1s3igl9ne33hri1r2.apps.googleusercontent.com"
+                    buttonText="Login with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                  />
                 </div>
               </div>
             </div>
