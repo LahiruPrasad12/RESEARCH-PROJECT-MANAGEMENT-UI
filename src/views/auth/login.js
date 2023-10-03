@@ -9,16 +9,15 @@ import ErrorToast from "../../toast/error";
 // import { GoogleLogin } from 'react-google-login';
 
 
-
-export default function Login() {
+export default function Login({ onSuccess }) {
   //if user already logged in user redirect to
-  // const responseGoogle = (response) => {
-  //   console.log(response);
-  //   // Send the Google response to your backend for verification
-  //   if (response && response.profileObj) {
-  //     onSuccess(response.profileObj); // This function should send the user data to your backend
-  //   }
-  // };
+  const responseGoogle = (response) => {
+    console.log(response);
+    // Send the Google response to your backend for verification
+    if (response && response.profileObj) {
+      onSuccess(response.profileObj); // This function should send the user data to your backend
+    }
+  };
 
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState("");
@@ -165,7 +164,7 @@ export default function Login() {
                   </div>
 
                 </div>
-                {/* <div>
+                <div>
                   <GoogleLogin
                     clientId="449561251103-856haadov9gmdvn1s3igl9ne33hri1r2.apps.googleusercontent.com"
                     buttonText="Login with Google"
@@ -173,7 +172,7 @@ export default function Login() {
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                   />
-                </div> */}
+                </div>
               </div>
             </div>
             {showToast && (
