@@ -161,18 +161,19 @@ export default function GoogleSignIn({ onSuccess }) {
                         Register here
                       </a>
                     </p>
+                    <div>
+                      <GoogleLogin
+                        clientId="449561251103-6n19p0kocjc3jlm32vkgs58dglutmcls.apps.googleusercontent.com"
+                        buttonText="Login with Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                      />
+                    </div>
                   </div>
 
                 </div>
-                <div>
-                  <GoogleLogin
-                    clientId="449561251103-6n19p0kocjc3jlm32vkgs58dglutmcls.apps.googleusercontent.com"
-                    buttonText="Login with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                  />
-                </div>
+
               </div>
             </div>
             {showToast && (
