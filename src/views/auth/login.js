@@ -6,7 +6,7 @@ import { Field, Form, Formik } from "formik";
 import auth from "../../apis/modules/auth";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ErrorToast from "../../toast/error";
-// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 
 
 export default function Login() {
