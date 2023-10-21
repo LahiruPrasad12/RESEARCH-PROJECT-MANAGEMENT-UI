@@ -15,6 +15,7 @@ export default function GoogleSignIn({ onSuccess }) {
     console.log(response);
     // Send the Google response to your backend for verification
     if (response && response.profileObj) {
+      window.location = "/student/groupregister"
       onSuccess(response.profileObj); // This function should send the user data to your backend
     }
   };
